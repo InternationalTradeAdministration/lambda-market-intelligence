@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+    - "8.1"
+before_script:
+    - "npm test"
+deploy:
+  provider: lambda
+  function_name: "ita-market-intelligence-endpointme-production"
+  region: "us-east-1"
+  role: "arn:aws:iam::397492300137:role/lambda_api"
+  runtime: "nodejs8.10"
+  handler_name: "handler"
+  memory_size: 256
+  timeout: 120
+  environment_variables:
+    - "SF_LOGIN_URL=$SF_LOGIN_URL"
+    - "SF_USERNAME=$SF_USERNAME"
+    - "SF_PASSWORD=$SF_PASSWORD"
+    - "URL_TEMPLATE=$URL_TEMPLATE"
+    - "S3_BUCKET=$S3_BUCKET"
+    - "MARKET_INSIGHTS_FRESHEN_URL=$MARKET_INSIGHTS_FRESHEN_URL"
+    - "COUNTRY_COMMERCIAL_FRESHEN_URL=$COUNTRY_COMMERCIAL_FRESHEN_URL"
+    - "API_KEY=$API_KEY"
