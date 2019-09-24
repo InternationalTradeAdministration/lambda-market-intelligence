@@ -56,7 +56,13 @@ const marketIntelQuery = (table) => {
     'References__c, ' +
     'Summary, ' +
     'Title, ' +
+    'Mobile_Title__c, ' +
     'UrlName, ' +
+    'Series__r.Name, ' +
+    'level_0__c, ' +
+    'Level_1__c, ' +
+    'Level_2__c, ' +
+    'Level_3__c, ' +
     '(SELECT Id, DataCategoryName, DataCategoryGroupName FROM DataCategorySelections) ' +
     'FROM ' + table + ' ' +
     'WHERE PublishStatus = \'Online\' ' +
@@ -131,12 +137,19 @@ const translate = (r, source, taxonomies) => {
     market_intel_id: r.Id,
     source,
     title: r.Title,
+    mobile_title: r.Mobile_Title__c,
     summary: r.Summary,
+    body: r.Atom__c,
     first_published_date: moment(r.FirstPublishedDate, moment.ISO_8601).format('YYYY-MM-DD'),
     last_published_date: moment(r.LastPublishedDate, moment.ISO_8601).format('YYYY-MM-DD'),
     url: striptags(r.Public_URL__c),
     references: r.References__c,
     url_name: r.UrlName,
+    series: (r.Series__r ? r.Series__r.Name : null),
+    level_0: r.level_0__c,
+    level_1: r.Level_1__c,
+    level_2: r.Level_2__c,
+    level_3: r.Level_3__c,
     industries: dataCategories.Industries ? dataCategories.Industries.filter(uniqueValues) : [],
     topics: dataCategories.Trade_Topics ? dataCategories.Trade_Topics.filter(uniqueValues) : [],
     countries: dataCategories.countries.filter(country => country != null),
