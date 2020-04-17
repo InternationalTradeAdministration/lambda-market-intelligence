@@ -33,7 +33,7 @@
     "axios": "^0.18.1",
     "dotenv": "^7.0.0",
     "jsforce": "^1.8.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "query-string": "^6.5.0",
     "request": "^2.83.0",
